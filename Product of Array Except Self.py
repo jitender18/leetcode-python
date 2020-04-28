@@ -30,3 +30,31 @@ class Solution:
             p = p * nums[i]
         
         return output
+
+
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        
+        # define left and right array
+        if not nums:
+            return 
+        
+        Left = [1] * len(nums)
+        Right = [1] * len(nums)
+        
+        # calculate to the right
+        for i in range(1, len(nums)):
+            Left[i] = nums[i-1] * Left[i-1]
+            
+        for j in reversed(range(0, len(nums)-1)):
+            Right[j] = nums[j+1] * Right[j+1]
+        
+                          
+        for k in range(len(nums)):
+            nums[k] = Left[k] * Right[k]
+        
+        
+        
+        return nums
